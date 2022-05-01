@@ -1,0 +1,9 @@
+{
+  "id": "splinterlands-marketplace",
+  "gameId": "splinterlands",
+  "name": "Marketplace",
+  "github": "https://github.com/earnkeeper/ekp-splinterlands-marketplace",
+  "image": "/static/market.jpeg",
+  "mainPage": "marketplace",
+  "description": "Want to sort the Splinterlands Marketplace by Card Popularity and Win Rate? Do it here..."
+}
