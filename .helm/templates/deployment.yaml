@@ -34,6 +34,8 @@ spec:
               value: '{{ .Values.mongodb.password }}'
             - name: REDIS_HOST
               value: '{{ .Values.redis.host }}'
+            - name: REDIS_PASSWORD
+              value: '{{ .Values.redis.password }}'
             - name: REDIS_DB
               value: '{{ .Values.redis.db }}'
             - name: NODE_ENV
