@@ -22,7 +22,7 @@ npm run start
 
 ## Deploying
 
-The repository is already set up for deploy to kubernetes. 
+The repository is already set up for deploy to kubernetes.
 
 From a fresh install, add a new file to the root of the project:
 
@@ -43,10 +43,10 @@ werf helm secret values encrypt clear-values.yaml -o .helm/secret-values.yaml
 
 Set the following two secrets on your github repo:
 
-Secret Name|Description
----|---
-WERF_SECRET_KEY|The contents of .werf_secret_key in the root of your project
-KUBE_CONFIG_BASE64_DATA|The output of `doctl kubernetes cluster kubeconfig show <config name> | base64` if using digital ocean
+| Secret Name             | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- | ------------------------------ |
+| WERF_SECRET_KEY         | The contents of .werf_secret_key in the root of your project          |
+| KUBE_CONFIG_BASE64_DATA | The output of `doctl kubernetes cluster kubeconfig show <config name> | base64` if using digital ocean |
 
 If you have the Github and Digital Ocean CLIs installed you can do this as follows:
 
