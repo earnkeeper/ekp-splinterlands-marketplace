@@ -81,7 +81,7 @@ export class MarketplaceController extends AbstractController {
     await this.clientService.removeOldLayers(event, COLLECTION_NAME);
 
     for (const document of listingDocuments) {
-      await this.clientService.emitDocuments(event, COLLECTION_NAME, [
+      await this.clientService.emitPartialDocuments(event, COLLECTION_NAME, [
         document,
       ]);
     }
