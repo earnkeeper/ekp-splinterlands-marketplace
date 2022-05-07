@@ -1,11 +1,16 @@
-import { EkConfigService, SdkModule } from '@earnkeeper/ekp-sdk-nestjs';
+import { config } from '@earnkeeper/ekp-sdk';
+import { SdkModule } from '@earnkeeper/ekp-sdk-nestjs';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MarketplaceModule } from './feature/marketplace/marketplace.module';
 
 export const MODULE_DEF = {
   imports: [
-    MongooseModule.forRootAsync({ useClass: EkConfigService }),
+    MongooseModule.forRoot(
+      config('MONGO_URI', {
+        default: 'mongodb://localhost:27017/splinterlands',
+      }),
+    ),
     MarketplaceModule,
     SdkModule,
   ],
