@@ -78,13 +78,11 @@ export class MarketplaceController extends AbstractController {
       favouritesForm,
     );
 
-    await this.clientService.removeOldLayers(event, COLLECTION_NAME);
-
-    for (const document of listingDocuments) {
-      await this.clientService.emitPartialDocuments(event, COLLECTION_NAME, [
-        document,
-      ]);
-    }
+    await this.clientService.emitDocuments(
+      event,
+      COLLECTION_NAME,
+      listingDocuments,
+    );
 
     await this.clientService.emitDone(event, COLLECTION_NAME);
   }
