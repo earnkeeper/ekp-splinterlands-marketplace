@@ -478,7 +478,7 @@ export function detailsModal(): UiElement {
                                   },
                                   {
                                     name: 'Battles',
-                                    value: '$.battles',
+                                    value: commify('$.battles'),
                                   },
                                   {
                                     imageUrl: MANA_IMAGE,
