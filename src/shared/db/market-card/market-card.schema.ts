@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type CardStatsDocument = CardStats & Document;
+export type MarketCardDocument = MarketCard & Document;
 
-@Schema({ collection: 'cardstats_v4' })
-export class CardStats {
+@Schema({ collection: 'market_card' })
+export class MarketCard {
   @Prop()
   readonly id: string;
 
@@ -27,10 +27,10 @@ export class CardStats {
   readonly editionNumber: number;
 
   @Prop({ type: 'array' })
-  readonly dailyBattleStats: DailyBattleStats[];
+  readonly daily: DailyBattleStats[];
 }
 
-export const CardStatsSchema = SchemaFactory.createForClass(CardStats)
+export const MarketCardSchema = SchemaFactory.createForClass(MarketCard)
   .index({ id: 1 }, { unique: true })
   .index({ blockNumber: 1 });
 

@@ -1,18 +1,18 @@
+import { ApiService } from '@/shared/api';
+import { MarketCardRepository } from '@/shared/db';
+import { CardMapper, CardService } from '@/shared/game';
 import { CurrencyDto } from '@earnkeeper/ekp-sdk';
 import { logger } from '@earnkeeper/ekp-sdk-nestjs';
 import { Injectable } from '@nestjs/common';
 import _ from 'lodash';
 import moment from 'moment';
-import { ApiService } from '../../shared/api';
-import { CardStatsRepository } from '../../shared/db';
-import { CardMapper, CardService } from '../../shared/game';
 import { ListingDocument } from './ui/listing.document';
 
 @Injectable()
 export class MarketplaceService {
   constructor(
     private apiService: ApiService,
-    private cardStatsRepository: CardStatsRepository,
+    private marketCardRepository: MarketCardRepository,
     private cardService: CardService,
   ) {}
 
@@ -23,7 +23,7 @@ export class MarketplaceService {
     favouritesForm: Record<string, boolean>,
   ): Promise<ListingDocument[]> {
     const sales = await this.apiService.fetchCardSales();
-    const cardStatsRecords = await this.cardStatsRepository.findAll();
+    const marketCards = await this.marketCardRepository.findAll();
     const allCardTemplates = await this.cardService.getAllCardTemplates();
     const settingsDto = await this.apiService.fetchSettings();
     const now = moment().unix();
@@ -57,22 +57,20 @@ export class MarketplaceService {
           ),
         );
 
-        const cardStatsRecord = cardStatsRecords.find(
-          (it) => it.hash === card.hash,
-        );
+        const marketCard = marketCards.find((it) => it.hash === card.hash);
 
         let battles: number;
         let wins: number;
 
-        if (!!cardStatsRecord) {
-          battles = _.chain(cardStatsRecord.dailyBattleStats)
+        if (!!marketCard) {
+          battles = _.chain(marketCard.daily)
             .filter(
               (it) => leagueGroup === 'All' || it.leagueGroup === leagueGroup,
             )
             .sumBy('battles')
             .value();
 
-          wins = _.chain(cardStatsRecord.dailyBattleStats)
+          wins = _.chain(marketCard.daily)
             .filter(
               (it) => leagueGroup === 'All' || it.leagueGroup === leagueGroup,
             )

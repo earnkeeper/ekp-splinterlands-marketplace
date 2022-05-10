@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { validate } from 'bycontract';
-import _ from 'lodash';
 import { Model } from 'mongoose';
-import { CardStats } from './card-stats.schema';
+import { MarketCard } from './market-card.schema';
+
 @Injectable()
-export class CardStatsRepository {
+export class MarketCardRepository {
   constructor(
-    @InjectModel(CardStats.name)
-    public cardModel: Model<CardStats>,
+    @InjectModel(MarketCard.name)
+    public cardModel: Model<MarketCard>,
   ) {}
 
-  async findAll(): Promise<CardStats[]> {
+  async findAll(): Promise<MarketCard[]> {
     const results = await this.cardModel.find().exec();
 
     return results ?? [];
   }
 
-  async save(cards: CardStats[]): Promise<void> {
+  async save(cards: MarketCard[]): Promise<void> {
     validate([cards], ['Array.<object>']);
 
     if (cards.length === 0) {
@@ -33,16 +33,7 @@ export class CardStatsRepository {
               id: model.id,
             },
             update: {
-              $set: _.pick(model, [
-                'id',
-                'blockNumber',
-                'hash',
-                'level',
-                'dailyBattleStats',
-                'templateId',
-                'gold',
-                'editionNumber',
-              ]),
+              $set: model,
             },
             upsert: true,
           },
