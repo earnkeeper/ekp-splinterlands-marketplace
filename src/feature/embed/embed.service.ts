@@ -9,7 +9,9 @@ export class EmbedService {
     listings: ListingDocument[],
   ): Promise<EmbedDataDocument[]> {
     return _.chain(listings)
-      .slice(0, 3)
+      .filter((listing) => listing.battles > 20)
+      .sortBy((listing) => listing.winpc)
+      .takeRight(3)
       .map((listing) => {
         return {
           id: listing.id,

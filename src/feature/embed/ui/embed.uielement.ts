@@ -8,6 +8,8 @@ import {
   Fragment,
   formatCurrency,
   Container,
+  formatTemplate,
+  formatPercent,
 } from '@earnkeeper/ekp-sdk';
 
 export default function element(): UiElement {
@@ -18,11 +20,10 @@ export default function element(): UiElement {
         content: 'Most Successful Cards',
       }),
       Row({
-        className: 'm-0',
         children: [
           Col({
             className: 'col-12',
-            children: [listingRow(0)],
+            children: [listingRow(2)],
           }),
           Col({
             className: 'col-12',
@@ -30,7 +31,7 @@ export default function element(): UiElement {
           }),
           Col({
             className: 'col-12',
-            children: [listingRow(2)],
+            children: [listingRow(0)],
           }),
         ],
       }),
@@ -40,11 +41,11 @@ export default function element(): UiElement {
 
 function listingRow(documentIndex: number) {
   return Row({
-    className: 'pt-1 pr-0',
+    className: 'pt-1',
     context: `$.data[${documentIndex}]`,
     children: [
       Col({
-        className: 'col-auto',
+        className: 'col-auto my-auto',
         children: [
           Image({
             className: 'm-0',
@@ -56,43 +57,30 @@ function listingRow(documentIndex: number) {
       Col({
         className: 'pl-0 col-auto',
         children: [
-          Container({
-            className: 'ml-0',
-            children: [
-              Span({
-                className: 'font-small-5',
-                content: '$.name',
-              }),
-            ],
+          Span({
+            className: 'font-small-3 d-block',
+            content: '$.name',
           }),
           Span({
-            className: 'font-small-3',
-            content: '$.battles',
-          }),
-          Span({
-            className: 'font-small-3',
-            content: 'Battles',
+            className: 'font-small-1 d-block',
+            content: formatTemplate('{{ battles }} Battles', {
+              battles: '$.battles',
+            }),
           }),
         ],
       }),
       Col({
         className: 'text-right',
         children: [
-          Container({
-            children: [
-              Span({
-                className: 'text-success font-small-4',
-                content: formatCurrency('$.price', '$.fiatSymbol'),
-              }),
-            ],
+          Span({
+            className: 'text-success font-small-3 d-block',
+            content: formatCurrency('$.price', '$.fiatSymbol'),
           }),
           Span({
-            className: 'text-success font-small-3',
-            content: 'Win Rate',
-          }),
-          Span({
-            className: 'text-success font-small-3',
-            content: '$.winRate',
+            className: 'text-success font-small-1 d-block',
+            content: formatTemplate('Win Rate {{ winRate }}', {
+              winRate: formatPercent('$.winRate'),
+            }),
           }),
         ],
       }),
