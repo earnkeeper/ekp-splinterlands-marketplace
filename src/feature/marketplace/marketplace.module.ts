@@ -7,7 +7,7 @@ import { MarketplaceService } from './marketplace.service';
 
 @Module({
   imports: [ApiModule, DbModule, GameModule],
-
   providers: [MarketplaceController, MarketplaceService],
+  exports: [MarketplaceService],
 })
 export class MarketplaceModule {}

@@ -3,6 +3,7 @@ import { SdkModule } from '@earnkeeper/ekp-sdk-nestjs';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MarketplaceModule } from './feature/marketplace/marketplace.module';
+import { EmbedModule } from './feature/embed/embed.module';
 
 export const MODULE_DEF = {
   imports: [
@@ -12,6 +13,7 @@ export const MODULE_DEF = {
       }),
     ),
     MarketplaceModule,
+    EmbedModule,
     SdkModule,
   ],
 };
