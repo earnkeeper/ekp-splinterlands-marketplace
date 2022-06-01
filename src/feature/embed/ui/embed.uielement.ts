@@ -54,7 +54,7 @@ function listingRow(documentIndex: number) {
         ],
       }),
       Col({
-        className: 'pl-0',
+        className: 'pl-0 col-auto',
         children: [
           Container({
             className: 'ml-0',
