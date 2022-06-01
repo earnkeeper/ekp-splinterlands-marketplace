@@ -15,10 +15,11 @@
         "@earnkeeper/ekp-sdk": "0.2.17",
         "@earnkeeper/ekp-sdk-nestjs": "2.0.3",
         "@nestjs/mongoose": "^9.0.1",
-        "mongoose": "^6.1.2",
         "@nestjs/schedule": "^1.1.0",
         "axios-https-proxy-fix": "^0.17.1",
-        "module-alias": "^2.2.2"
+        "module-alias": "^2.2.2",
+        "mongoose": "^6.1.2",
+        "webpack": "^5.72.1"
     },
     "devDependencies": {
         "@nestjs/cli": "^8.0.0",

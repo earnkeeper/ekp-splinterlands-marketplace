@@ -6,4 +6,10 @@ export class EmbedDataDocument extends DocumentDto {
   }
 
   readonly name: string;
+  readonly splinter: string;
+  readonly cardArtUrl: string;
+  readonly battles: number;
+  readonly winRate: number;
+  readonly price: number;
+  readonly fiatSymbol: string;
 }

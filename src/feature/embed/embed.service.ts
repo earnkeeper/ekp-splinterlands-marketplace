@@ -14,6 +14,12 @@ export class EmbedService {
         return {
           id: listing.id,
           name: listing.name,
+          cardArtUrl: listing.cardArtUrl,
+          splinter: listing.splinter,
+          battles: listing.battles,
+          winRate: listing.winpc,
+          price: listing.price,
+          fiatSymbol: listing.fiatSymbol,
         };
       })
       .value();
